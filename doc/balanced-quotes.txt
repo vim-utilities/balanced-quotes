@@ -1,0 +1,119 @@
+*balanced-quotes.txt*      For Vim version 8.0.       Last change: 2021 Jan 25
+
+
+                      Balanced Quotes    by S0AndS0
+
+
+Balanced Quotes                                              *balanced-quotes*
+
+1. Insert Map Defaults                                |balanced-quotes-insert|
+2. Functions                                       |balanced-quotes-functions|
+3. Configuration                               |balanced-quotes-configuration|
+4. Notes                                               |balanced-quotes-notes|
+
+==============================================================================
+1. Insert Mode Defaults                               *balanced-quotes-insert*
+
+                                                    `'`
+'                    Open single-quote; automatically inserts a closing quote,
+                     and moves cursor left by one column
+
+                                                    `"`
+"                    Open double-quote; automatically inserts a closing quote,
+                     and moves cursor left by one column
+>
+                                                    `
+<`                    Open backtick; automatically inserts a closing backtick,
+                     and moves cursor left by one column
+
+==============================================================================
+2. Functions                                       *balanced-quotes-functions*
+>
+  Balanced_Quotes(input, open, close)
+<
+{string} input       Character that was read from keyboard input
+
+{string} open        Open brace, bracket, or parenthesis
+
+{string} close       Closing brace, bracket, or parenthesis
+
+==============================================================================
+3. Configuration                               *balanced-quotes-configuration*
+
+                     Existing defaults may be modified or extended by
+                     assigning `g:balanced_quotes` variable within the
+                     `~/.vimrc` file for a given account.
+                     Defaults example~
+                     >
+    let g:balanced_quotes = {
+         \   'exclude': [],
+         \   'all': {
+         \     'single-quote': { 'open': "'" },
+         \     'double-quote': { 'open': '"' },
+         \     'backtick': { 'open': "`" },
+         \   },
+         \ }
+<
+                     The `exclude` list may define 'filetype' strings this
+                     plugin should ignore.
+                     Exclude example~
+                     >
+    let g:balanced_quotes = {
+         \   'exclude': [ 'help', 'markdown' ],
+         \ }
+<
+                     Add new symbol pare, or modify existing configuration
+                     entries, under top-level `all` configuration key.
+                     Customize `all` example~
+                     >
+    let g:balanced_quotes = {
+          \   'all': {
+          \     'vertical-bar': { 'open': '|', 'close': '|' },
+          \   }
+          \ }
+<
+                     Or by add 'filetype' specific top level key
+                     Filetype customization example~
+                     >
+    let g:balanced_quotes = {
+          \   'help': {
+          \     'asterisk': { 'open': '*' },
+          \   }
+          \ }
+<
+                     To remove a symbol pare defined by `all` key, set `false`
+                     Remove `all` entry example~
+                     >
+    let g:balanced_quotes = {
+         \   'all': {
+         \     'backtick': false,
+         \   },
+         \ }
+<
+                     Alternatively assign a JSON file path to the
+                     `g:balanced_quotes` variable to customize configurations
+                     JSON file example contents~
+                     >
+    {
+      "exclude": [],
+      "all": {
+        "single-quote": { "open": "'" },
+        "double-quote": { "open": "\"" },
+        "backtick": { "open": "`" }
+      }
+    }
+<
+                    Configuration via JSON example~
+                    >
+    let g:balanced_quotes = '~/.vim/configs/balanced-quotes.json'
+<
+==============================================================================
+4. Notes                                               *balanced-quotes-notes*
+
+                     Bugs for this plugin should be reported to plugin
+                     authors, not Vim maintainers.
+
+    https://github.com/vim-utilities/balanced-quotes/issues
+
+ vim:tw=78:ts=8:ft=help:norl:
+
