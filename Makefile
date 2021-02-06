@@ -21,7 +21,7 @@
 #    Make variables to satisfy conventions
 #
 NAME = balanced-quotes
-VERSION = 0.0.1
+VERSION = 0.0.2
 PKG_NAME = $(NAME)-$(VERSION)
 
 
